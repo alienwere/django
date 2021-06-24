@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %} About Us {% endblock %}
+
+{% block content %}
+
+<section id="bc" class="mt-3">
+     <div class="container">
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">About</li>
+        </ol>
+      </nav>
+    </div>
+</section>
+
+<div class="container pt-5 pb-4 text-center">
+    <h2>About Us</h2>
+</div>
+<div class="container text-justify">
+    <p>We started our family business as a small grocery shop  with a limited range of Groceries. It was a family business, and our aim was to give an excellent 
+        service to our customers and to keep our prices low. We try to give our customers the best of our Services and Quality. Our recommendations and free advice
+        are useful for 95-99 % of our customers. Customer Satisfaction is our First Priority.
+        We want to make you smile by providing you with the spices and herbs you want to buy without having to compromise.
+        We are selling Red chilli, Garlic, Cloves, Coriander, Mustard, Cardamom, Ginger, Fenugreek, Tamarind, Turmeric, Black Pepper, White Pepper, and Still more to be added
+        We Help our Customers To The Best Possible Way We Can. For any Help, Suggestions Or Inquiry you can feel free to contact us by Email or Call. </p>
+
+    <p>With this initiative, we hope that our store adds some great value in your day to day requirement for natural and organic products.</p>
+</div>
+
+{% endblock %}

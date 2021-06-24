@@ -1,0 +1,79 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %} {{product.name}}  {% endblock %}
+
+{% block content %}
+
+<section id="bc" class="mt-3">
+    <div class="container">
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'productsall' %}">Products</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{product.name | lower}}</li>
+    </ol>
+  </nav>
+</div>
+</section>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-10 mx-auto col-md-6 my3">
+            <img src="{{product.image.url}}" alt="{{product.name}}" width="100%">
+        </div>
+        <div class="col-10 mx-auto col-md-6 my-3">
+            <div>
+                <h1 class="product_title"> {{product.name}} </h1>
+                <h5 class="text-warning font-italic mb-3">
+                    <span class="mr-1">Rs.</span> {{product.price}}
+                </h5>
+                <p class="product_text">50g</p>
+                <p class="product_description">Product Description</p>
+                <p class="text-justify product_text"> {{product.description}} </p>
+	{% if product.stock <= 0 %}
+                <p class="text-justify product_text"><b>Out of Stock</b></p>
+	{% else %}
+                <a href="{% url 'add_cart' product.id %}">
+                    <button type="button" name="button" class="btn btn-warning">
+                        Add to Cart 
+                    </button> 
+                </a>
+    {% endif %}
+            </div>
+        </div>
+    </div>
+    <br><br>
+{% if user.is_authenticated %}
+        <div class="card">
+        <div class="card-header">
+            <h4>Ratings and Reviews</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <textarea name="content" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Post</button>
+                </div>
+            </form>
+        </div>
+{% endif %}  
+
+    {% if reviews.count > 0 %}
+        <ul class="list-group list-group-flush" >
+            {% for review in reviews %}
+            <li class="list-group-item"><h5>{{review.user.username}}</h5>
+            <p class="card-text">{{ review.content}}</p>
+        </li>
+    {% endfor %}       
+        </ul>
+    {% endif %}       
+        </div>
+    </div>
+    <br>
+    
+
+{% endblock %}

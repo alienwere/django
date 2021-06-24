@@ -1,0 +1,117 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+  <div class="w-100 p-md-6 mb-4 text-white" style="height: 350px; background: url('static/img/banner2.jpg') #302D2D no-repeat; 
+  background-size: cover; background-position: center">
+      <div class="container">
+        <div class="col-md-6 px-0 pt-5">
+          <h1 class="display-4 fst-italic">Spices & Herbs</h1>
+          <p class="lead my-3">Buy Herbs, Spices & Seasonings Online on The herbs home.  
+              We are merchants of the highest quality, hand-selected and hand-prepared spices and herbs.
+               Welcome to our online herbs, spices and seasonings store
+               making your choice.</p>
+          <p class="lead mb-0"><a href="{% url 'productsall'%}" class="text-white fw-bold">
+            <button class="btn btn-outline-warning">Buy Now</button>
+          </a></p>
+        </div>
+      </div>
+    </div>
+
+      <div class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-10 mx-auto my-2 text-center">
+                        <h1 class="text-captitalse font-weight-bold">
+                         Popular Products
+                        </h1> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+        
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for product in products %}
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <a href="{{product.get_url}}">
+                    <img src="{{product.image.url}}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="{{product.name}}">
+                    </a>
+
+                    <div class="card-body">
+                        <h3 class="text-warning">{{product.name}}</h3>
+                      <p class="card-text"> {{product.description |truncatechars:150 }}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        <a href="{{product.get_url}}">
+                          <button type="button" class="btn btn-outline-warning">
+                              <h5 class="mr-1 font-italic mb-0">Rs. {{product.price}} </h5></button>
+                        </a>                            
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+
+            <div class="b-example-divider"></div>
+
+            <div class="row bg-grey p-4 text-center">
+              <div class="col-sm-12 col-md-4 p-4">
+                <i class="fas fa-undo text-warning" style="font-size: 100px;"></i>
+                <h3>Free Returns</h3>
+                <p>On all Order across India</p>
+              </div>
+              <div class="col-sm-12 col-md-4 p-4">
+                <i class="fas fa-truck text-warning" style="font-size: 100px;"></i>
+                  <h3>Delivery</h3>
+                  <p>Within 4-7 Days</p>
+              </div>
+              <div class="col-sm-12 col-md-4 p-4">
+                    <i class="fas fa-credit-card text-warning" style="font-size: 100px;"></i>
+                    <h3>Payment Secure</h3>
+                    <p>Pay with CD, Digital Wallet </p>
+              </div>
+            </div>
+
+            <div class="b-example-divider"></div>
+          <br><br>
+        </div>
+
+  <!-- <div class="container">
+      <div class="row">
+          <div class="col-10 mx-auto my-2 text-center">
+              <h1 class="text-captitalse font-weight-bold">
+               Shop by Category
+              </h1> 
+          </div>
+      </div>
+
+      <div class="row">
+        {% for categories in categories %}
+        <div class="col-3">
+            <div class="card shadow-sm">
+                <a href="{{categories.get_url}}">
+                <img src="{{categories.image.url}}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="{{categories.name}}">
+                </a>
+
+                <div class="card-body">
+                    <h3 class="text-warning">{{categories.name}}</h3>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+      </div>
+  </div> -->
+        {% endblock %}
+        
+       
+      
